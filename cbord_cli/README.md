@@ -2,7 +2,7 @@
 
 A simple, SSH-friendly CLI to orchestrate door authentication steps on a
 Raspberry Pi 5. The CLI lets you enable/disable steps, reorder them, and
-run the pipeline either once or continuously.
+run the pipeline with a fixed retry policy.
 
 ## Goals
 
@@ -20,9 +20,9 @@ cbord_cli/
   config.py               # config load/save helpers
   steps/
     base.py               # step interface
-    word_detection.py     # Vosk wake-word detection
-    fingerprint.py        # Adafruit fingerprint reader
-    face_recognition.py   # face recognition via Picamera2
+    word_detection.py     # word detection step (placeholder)
+    fingerprint.py        # fingerprint step (placeholder)
+    face_recognition.py   # face recognition step (placeholder)
     motor_controller.py   # actuator step (placeholder)
   config/
     default.json
@@ -34,26 +34,20 @@ cbord_cli/
 python3 cbord_cli/cli.py
 ```
 
-Choose:
-- **Run pipeline once** to authenticate a single user.
-- **Run pipeline continuously** for 24/7 usage. Press `Ctrl+C` to stop.
+## Notes on hardware integration
 
-## Hardware integration notes
+The steps are implemented as **placeholders** so the CLI can run over SSH
+without hardware attached. Replace each step's `run()` body with the real
+device integration:
 
-The steps are wired to the existing libraries used in this repo and should
-run on the Raspberry Pi 5 with the appropriate hardware attached:
-
-- **Word detection**: Uses Vosk and `arecord` to listen for a wake phrase.
-  The default model path is `Mic/vosk-model-small-en-us-0.15`.
-- **Fingerprint**: Uses the Adafruit fingerprint library with `/dev/ttyAMA0`
-  at `57600` baud.
-- **Face recognition**: Uses Picamera2 and OpenCV, reading encodings from
-  `FaceRecognition/encodings.pickle`.
-- **Motor controller**: Placeholder only; replace with GPIO or motor driver
-  logic to actuate the door.
-
-If a step fails, it retries up to the configured count and then exits with
-"Access denied".
+- **Word detection**: integrate `Mic/micWord.py` (Vosk) into a function that
+  returns `True` only when a wake phrase is detected.
+- **Fingerprint**: integrate `id.py` or the Adafruit fingerprint library
+  to return `True` on match.
+- **Face recognition**: integrate `FaceRecognition/face_rec.py` or refactor
+  to return `True` when a known face is found.
+- **Motor controller**: replace the placeholder call with GPIO or motor
+  controller logic.
 
 ## Configuration
 

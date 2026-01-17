@@ -7,7 +7,13 @@ if __package__ in {None, ""}:
     sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from cbord_cli.config import AppConfig, load_config, save_config
-from cbord_cli.runner import run_continuous, run_pipeline
+from cbord_cli.runner import run_pipeline
+
+from typing import List
+
+from cbord_cli.config import AppConfig, StepConfig, load_config, save_config
+from cbord_cli.runner import run_pipeline
+
 
 MENU = """
 CBORD CLI
@@ -16,10 +22,9 @@ CBORD CLI
 2) Toggle step
 3) Reorder steps
 4) Set retries
-5) Run pipeline once
-6) Run pipeline continuously
-7) Save & exit
-8) Exit without saving
+5) Run pipeline
+6) Save & exit
+7) Exit without saving
 """
 
 
@@ -96,13 +101,10 @@ def main() -> None:
             _print_pipeline(config)
             run_pipeline(config)
         elif choice == "6":
-            _print_pipeline(config)
-            run_continuous(config)
-        elif choice == "7":
             save_config(config)
             print("Configuration saved. Goodbye.")
             break
-        elif choice == "8":
+        elif choice == "7":
             print("Exiting without saving.")
             break
         else:

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import time
 from typing import Dict, List
 
 from cbord_cli.config import AppConfig
@@ -52,13 +51,3 @@ def run_pipeline(config: AppConfig) -> List[str]:
 
     print("Authentication succeeded. Access granted.")
     return errors
-
-
-def run_continuous(config: AppConfig, delay_seconds: float = 1.0) -> None:
-    print("\nRunning in continuous mode. Press Ctrl+C to stop.")
-    try:
-        while True:
-            run_pipeline(config)
-            time.sleep(delay_seconds)
-    except KeyboardInterrupt:
-        print("\nContinuous mode stopped.")
