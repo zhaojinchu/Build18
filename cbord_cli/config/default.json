@@ -1,0 +1,9 @@
+{
+  "retries": 5,
+  "steps": [
+    {"name": "word_detection", "enabled": true},
+    {"name": "fingerprint", "enabled": true},
+    {"name": "face_recognition", "enabled": true},
+    {"name": "motor_controller", "enabled": true}
+  ]
+}
