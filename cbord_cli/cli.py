@@ -1,5 +1,14 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from cbord_cli.config import AppConfig, load_config, save_config
+from cbord_cli.runner import run_pipeline
+
 from typing import List
 
 from cbord_cli.config import AppConfig, StepConfig, load_config, save_config
