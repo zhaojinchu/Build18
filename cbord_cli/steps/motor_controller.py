@@ -23,12 +23,12 @@ PWMOutputDevice = _load_pwm_output_device()
 
 @dataclass
 class MotorControllerSettings:
-    rpwm_pin: int = 19
-    lpwm_pin: int = 18
+    rpwm_pin: int = 18
+    lpwm_pin: int = 19
     speed: float = 0.95
-    extend_seconds: float = 5.0
-    hold_seconds: float = 5.0
-    retract_seconds: float = 5.0
+    extend_seconds: float = 9
+    hold_seconds: float = 10
+    retract_seconds: float = 9
     ramp_step: int = 5
     ramp_delay: float = 0.05
     pwm_frequency: int = 500
