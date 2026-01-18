@@ -12,7 +12,9 @@ PHRASES = [
     "I don't like you at all.",
     "You're a gay little boy",
     "You're a little bitch.",
-    "Lowkey kiss my ass."
+    "Lowkey kiss my ass.",
+    "Welcome to the diddy party",
+    "Epstein, here I come"
 ]
 
 # Store state next to this script so it persists across runs
