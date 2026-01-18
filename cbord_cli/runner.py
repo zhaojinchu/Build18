@@ -8,6 +8,7 @@ from cbord_cli.steps.face_recognition import FaceRecognitionStep
 from cbord_cli.steps.fingerprint import FingerprintStep
 from cbord_cli.steps.motor_controller import MotorControllerStep
 from cbord_cli.steps.word_detection import WordDetectionStep
+from cbord_cli import tts
 
 
 def build_steps() -> Dict[str, object]:
@@ -41,12 +42,14 @@ def run_pipeline(config: AppConfig) -> List[str]:
             print(f"  Attempt {attempt}/{config.retries}")
             if step.run():
                 success = True
+                tts.speak_step_success(step_config.name)
                 break
             if attempt < config.retries:
                 print("  Retrying...")
 
         if not success:
             print("Authentication failed. Access denied.")
+            tts.speak_failure()
             errors.append(f"Step '{step_config.name}' failed after {config.retries} retries.")
             return errors
 
