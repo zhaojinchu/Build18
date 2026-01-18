@@ -19,6 +19,24 @@ FAILURE_PHRASES = [
     "Lowkey kiss my ass.",
 ]    
 
+STEP_SUCCESS_PHRASES: dict[str, list[str]] = {
+    "word_detection": [
+        "Wake word heard. Get a move on.",
+        "Heard you. Keep going.",
+        "Voice verified. Next step.",
+    ],
+    "fingerprint": [
+        "Fingerprint matched. Speed it up.",
+        "Got your print. Keep moving.",
+        "Fingerprint checks out. Next.",
+    ],
+    "face_recognition": [
+        "Face recognized. Almost there.",
+        "Yep, that's you. Keep going.",
+        "Face match confirmed. Next step.",
+    ],
+}
+
 SUCCESS_PHRASES = [
     "Enter the fuck in you little bitch.",
     "Welcome to the diddy party",
@@ -97,4 +115,12 @@ def speak_failure() -> None:
 
 def speak_success() -> None:
     phrase = _next_phrase(SUCCESS_PHRASES, "success_bag")
+    speak(phrase)
+
+
+def speak_step_success(step_name: str) -> None:
+    phrases = STEP_SUCCESS_PHRASES.get(step_name)
+    if not phrases:
+        return
+    phrase = _next_phrase(phrases, f"{step_name}_bag")
     speak(phrase)

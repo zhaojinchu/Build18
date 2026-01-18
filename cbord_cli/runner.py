@@ -42,6 +42,7 @@ def run_pipeline(config: AppConfig) -> List[str]:
             print(f"  Attempt {attempt}/{config.retries}")
             if step.run():
                 success = True
+                tts.speak_step_success(step_config.name)
                 break
             if attempt < config.retries:
                 print("  Retrying...")
