@@ -67,7 +67,12 @@ class FaceRecognitionStep:
                         print(f"Face recognized: {name}.")
                         return True
         finally:
-            picam2.stop()
+            try:
+                picam2.stop()
+            finally:
+                close = getattr(picam2, "close", None)
+                if callable(close):
+                    close()
 
         print("Face recognition timed out.")
         return False
