@@ -53,6 +53,7 @@ def run_pipeline(config: AppConfig) -> List[str]:
             return errors
 
     print("Authentication succeeded. Access granted.")
+    tts.speak_success()
     return errors
 
 

@@ -12,18 +12,17 @@ MODEL_PATH = Path(__file__).resolve().parents[1] / "piper_work" / "en_US-joe-med
 STATE_FILE = Path(__file__).resolve().parent / ".tts_state.json"
 
 FAILURE_PHRASES = [
-    "You hella stupid.",
-    "Get outta my room.",
-    "Access denied. Try harder.",
-    "Nice try. Door stays closed.",
-    "Nope. You are not getting in.",
-]
+    "Get the fuck out of my room.",
+    "I don't like you at all.",
+    "You're a gay little boy",
+    "You're a little bitch.",
+    "Lowkey kiss my ass.",
+]    
 
 SUCCESS_PHRASES = [
-    "Access granted. Door unlocked.",
-    "Welcome back. Opening the door.",
-    "You got it. Unlocking now.",
-    "All checks passed. Door is opening.",
+    "Enter the fuck in you little bitch.",
+    "Welcome to the diddy party",
+    "Epsteen, here I come"
 ]
 
 _rng = random.SystemRandom()
