@@ -5,6 +5,8 @@ import importlib
 import os
 import time
 
+from cbord_cli import tts
+
 ACTUATOR_LINK = "bts7960_test_enonly.py"
 
 
@@ -98,6 +100,7 @@ class MotorControllerStep:
             time.sleep(settings.extend_seconds)
             _ramp_down(rpwm, target_intensity, settings.ramp_step, settings.ramp_delay)
             rpwm.off()
+            tts.speak_success()
 
             print("Holding position.")
             time.sleep(settings.hold_seconds)
